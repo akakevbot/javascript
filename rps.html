@@ -1,0 +1,108 @@
+<script>
+var comp = null;
+var playr = null;
+var compScore = null;
+var playrScore = null;
+var check = false;
+
+
+function computerPlay() {
+    let n = Math.floor(Math.random() * 3);
+    switch (n) {
+        case 0:
+            return "rock";
+            break;
+        case 1: 
+            return "paper";
+            break;
+        case 2:
+            return "scissors";
+            break;
+        default: 
+            console.log("Error: computer didn't play fair");
+            break;
+
+    }
+}
+function playerPlay() {
+    let valid=false;
+    var response=null;
+    while (valid == false) {
+        response = prompt("Rock, Paper, or Scissors?");
+        let lower = response.toLowerCase();
+        response = lower;
+        if (response == comp){
+            console.log("Tie! Redo!");
+            comp = computerPlay();
+        }else if (response == "rock") {
+            response = "rock";
+            valid = true;
+        } else if (response == "paper"){
+            response = "paper"; 
+            valid = true;
+        } else if (response == "scissors"){
+            response == "scissors"; 
+            valid = true;
+        } else{
+        alert("You entered an invalid option. Please pick either Rock, Paper, or Scissors")   
+        }
+    }
+    return response;
+}
+
+function goOn3(computer, player) {
+    if (player == "rock"){
+        if (computer == "paper") {
+            console.log("The computer wins!")
+            ++compScore;
+        }else if (computer == "scissors") {
+            console.log("the player wins!")
+            ++playrScore;
+        }else{
+            console.log("Hmm.. Someones not paying by the rulles.")
+        }
+    }else if (player == "paper"){
+        if (computer == "scissors") {
+            console.log("The computer wins!")
+            ++compScore;
+        }else if (computer == "rock") {
+            console.log("the player wins!")
+            ++playrScore;
+        }else{
+            console.log("Hmm.. Someones not paying by the rulles.")
+        }
+    }else if (player == "scissors") { 
+        if (computer == "rock") {
+            console.log("The computer wins!")
+            ++compScore;
+        }else if (computer == "paper") {
+            console.log("the player wins!")
+            ++playrScore;
+        }else{
+            console.log("Hmm.. Someones not paying by the rulles.")
+        }
+    }else {
+            console.log("someone cheated!")
+    }
+
+}
+
+function run5Games(){
+    for (let i = 0; i < 5; ++i) {
+        comp = computerPlay();
+        playr = playerPlay();
+        goOn3(comp,playr);
+    }
+    if(compScore >= 3){
+        console.log("The Computer Reigns Supreme!")
+    }else if (playrScore >=3){
+        console.log("The Player reigns supreeme!")
+    }else{
+        console.log("I don't know what to believe anymore..")
+    }
+}
+
+
+run5Games();
+
+</script>
